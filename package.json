@@ -1,0 +1,30 @@
+{
+  "name": "sdk-javipopopo",
+  "version": "0.1.0",
+  "description": "Our thanks to master javi",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarthKenar/sdk-javipopopo.git"
+  },
+  "keywords": [
+    "javi-popopo",
+    "sdk-javi",
+    "sdkjavi",
+    "fetch",
+    "sdkfetch",
+    "javipopopo",
+    "javi-sdk",
+    "javisdk",
+    "vaquitamu"
+  ],
+  "author": "DarthKenar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarthKenar/sdk-javipopopo/issues"
+  },
+  "homepage": "https://github.com/DarthKenar/sdk-javipopopo#readme"
+}

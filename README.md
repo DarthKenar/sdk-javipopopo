@@ -4,6 +4,8 @@
 
 ## About
 
+no dependencies, only fetch with or without auth
+
 Our thanks to Master Javi
 
 ## Installation
@@ -21,12 +23,13 @@ yarn add sdk-javipopopo
 ## Usage
 
 ```js
-import sdkAuthRequest from "sdk-javipopopo"; 
-import { MethodsHttp } from '@/types'; //contain all the http methods
+import { sdkAuthRequest, MethodsHttp } from "sdk-javipopopo";
 
-const BASE_URL = "https://api.javipopopo.com/api/v1";
-const urlRequest = 'login';
-const token = 'token';
+// considering use environment variables
+// const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "https://api.javipopopo.com/api/v1"; //your base url
+const urlRequest = "login"; //your url request
+const token = "token"; //your auth token
 
 const response: DefaultResponse = await sdkAuthRequest(
   urlRequest,
@@ -34,9 +37,7 @@ const response: DefaultResponse = await sdkAuthRequest(
   token,
   BASE_URL
 );
-
 ```
-
 
 ## License
 

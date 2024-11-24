@@ -4,7 +4,9 @@
 
 ## About
 
-no dependencies, only fetch with or without auth
+fetch fast with or without auth token
+
+no dependencies
 
 Our thanks to Master Javi
 

@@ -1,6 +1,6 @@
 {
   "name": "sdk-javipopopo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Our thanks to master javi",
   "main": "src/main.ts",
   "scripts": {

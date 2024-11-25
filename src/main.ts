@@ -1,5 +1,5 @@
 import { getAuthRequestMetaData } from "./utils/auth";
-import { MethodsHttp } from "./types";
+import { MethodsHttp } from "./types/methods";
 
 export interface SDKRequestType {
   <T>(

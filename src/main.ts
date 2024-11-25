@@ -1,7 +1,12 @@
 import { getAuthRequestMetaData } from "./utils/auth";
-import { MethodsHttp } from "./types/methods";
 
-export * from "./types/methods";
+export enum MethodsHttp {
+  POST = "POST",
+  GET = "GET",
+  PUT = "PUT",
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+}
 
 export interface SDKRequestType {
   <T>(

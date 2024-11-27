@@ -1,13 +1,5 @@
 import { getAuthRequestMetaData } from "./utils/auth";
-
-export enum MethodsHttp {
-  POST = "POST",
-  GET = "GET",
-  PUT = "PUT",
-  DELETE = "DELETE",
-  PATCH = "PATCH",
-}
-
+import { MethodsHttp } from "./types/methods";
 export interface SDKRequestType {
   <T>(
     requestUrl: RequestInfo,
@@ -67,9 +59,9 @@ interface SDKAuthRequestType {
   ): Promise<T>;
 }
 
-export const sdkNoAuthRequest = sdkRequest;
+const sdkNoAuthRequest = sdkRequest;
 
-export const sdkAuthRequest: SDKAuthRequestType = async (
+const sdkAuthRequest: SDKAuthRequestType = async (
   requestUrl,
   options,
   token,
@@ -83,8 +75,4 @@ export const sdkAuthRequest: SDKAuthRequestType = async (
     errorHandler
   );
 
-module.exports = {
-  sdkNoAuthRequest,
-  sdkAuthRequest,
-  MethodsHttp,
-};
+export { sdkNoAuthRequest, sdkAuthRequest, MethodsHttp };

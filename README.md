@@ -6,8 +6,6 @@
 
 fetch fast with or without auth token
 
-no dependencies
-
 Our thanks to Master Javi
 
 ## Installation

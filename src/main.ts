@@ -1,5 +1,6 @@
 import { getAuthRequestMetaData } from "./utils/auth";
 import { MethodsHttp } from "./types/methods";
+import { combineUrl } from "./utils/combinePath";
 export interface SDKRequestType {
   <T>(
     baseURL: string,

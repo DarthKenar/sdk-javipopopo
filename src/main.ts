@@ -2,9 +2,9 @@ import { getAuthRequestMetaData } from "./utils/auth";
 import { MethodsHttp } from "./types/methods";
 export interface SDKRequestType {
   <T>(
-    requestUrl: RequestInfo,
+    baseURL: string,
+    requestUrl: string,
     options?: RequestInit,
-    urlPath?: string,
     errorHandler?: () => void
   ): Promise<T>;
 }
@@ -12,19 +12,20 @@ export interface SDKRequestType {
 /**
  * Generic request handler
  *
- * @param requestUrl string url for request the api endpoint
+ * @param baseURL base url for the api endpoint
+ * @param requestURL string url for request the api endpoint
  * @param options options for specify the request parameters
  * @returns the resolved promise of the request in json format
  * @throws Generic error
  */
 export const sdkRequest: SDKRequestType = async <T>(
-  requestUrl: RequestInfo,
+  baseURL: string,
+  requestURL: string,
   options?: RequestInit,
-  urlPath?: string
 ): Promise<T> => {
   let response: Response;
   try {
-    const url = `${urlPath}/${requestUrl}`;
+    const url = combineUrl(baseURL || '', requestURL);
     response = await (options ? fetch(url, options) : fetch(url));
 
     if (!response.ok) {
@@ -51,10 +52,10 @@ export const sdkRequest: SDKRequestType = async <T>(
 
 interface SDKAuthRequestType {
   <T>(
-    requestUrl: RequestInfo,
+    urlPath: string,
+    requestUrl: string,
     options?: RequestInit,
     token?: string,
-    urlPath?: string,
     errorHandler?: () => void
   ): Promise<T>;
 }
@@ -62,16 +63,16 @@ interface SDKAuthRequestType {
 const sdkNoAuthRequest = sdkRequest;
 
 const sdkAuthRequest: SDKAuthRequestType = async (
+  baseURL,
   requestUrl,
   options,
   token,
-  urlPath,
   errorHandler
 ) =>
   sdkRequest(
+    baseURL,
     requestUrl,
     await getAuthRequestMetaData(options, token),
-    urlPath,
     errorHandler
   );
 

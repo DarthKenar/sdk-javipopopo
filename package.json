@@ -8,7 +8,10 @@
     "build": "tsc",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vulnerabilities" : "npm audit fix"
+    "vulnerabilities" : "npm audit fix",
+    "major-version" : "npm version major",
+    "minor-version" : "npm version minor",
+    "patch-version" : "npm version patch"
   },
   "repository": {
     "type": "git",

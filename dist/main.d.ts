@@ -1,4 +1,5 @@
 import { MethodsHttp } from "./types/methods";
+import { buildQueryParams } from "./utils/exported-utils/buildQueryParams";
 export interface SDKRequestType {
     <T>(baseURL: string, requestUrl: string, options?: RequestInit, errorHandler?: () => void): Promise<T>;
 }
@@ -17,4 +18,53 @@ interface SDKAuthRequestType {
 }
 declare const sdkNoAuthRequest: SDKRequestType;
 declare const sdkAuthRequest: SDKAuthRequestType;
-export { sdkNoAuthRequest, sdkAuthRequest, MethodsHttp };
+declare type FileOperationType = 'upload' | 'download';
+interface FileOperationConfig {
+    baseURL: string;
+    path: string;
+    token?: string;
+    onProgress?: (progress: number, onCancel: () => void) => void;
+    signal?: AbortSignal;
+}
+interface UploadConfig extends FileOperationConfig {
+    file: File;
+}
+interface DownloadConfig extends FileOperationConfig {
+    url: string;
+}
+interface ResponseCreateDocument {
+    [key: string]: any;
+}
+interface FileOperationFunction {
+    <T extends FileOperationType>(operation: T, config: T extends 'upload' ? UploadConfig : DownloadConfig): Promise<T extends 'upload' ? ResponseCreateDocument : string>;
+}
+/**
+ * Generic XMLHttpRequest handler for file operations (upload/download)
+ *
+ * @template T - The operation type ('upload' or 'download')
+ * @param operation - The type of operation to perform
+ * @param config - Configuration object containing operation-specific parameters
+ * @returns Promise resolving to operation-specific response type
+ *
+ * @example
+ * // Upload file
+ * const uploadResult = await sdkFileOperation('upload', {
+ *   baseURL: 'https://api.example.com',
+ *   path: '/upload-file',
+ *   file: fileInput.files[0],
+ *   token: 'your-token',
+ *   onProgress: (progress, onCancel) => console.log(`Upload: ${progress}%`)
+ * });
+ *
+ * @example
+ * // Download file
+ * const downloadUrl = await sdkFileOperation('download', {
+ *   baseURL: 'https://api.example.com',
+ *   path: '/download',
+ *   url: 'file-url-to-download',
+ *   token: 'your-token',
+ *   onProgress: (progress, onCancel) => console.log(`Download: ${progress}%`)
+ * });
+ */
+declare const sdkFileRequest: FileOperationFunction;
+export { sdkNoAuthRequest, sdkAuthRequest, MethodsHttp, buildQueryParams, sdkFileRequest };

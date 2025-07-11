@@ -1,0 +1,3 @@
+-> Files handle :check:
+-> loading con XML object :check:
+-> build query string :check:
